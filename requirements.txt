@@ -1,0 +1,92 @@
+# ==================================================
+# REETA — requirements.txt
+# ==================================================
+# Install all dependencies:
+#   pip install -r requirements.txt
+#
+# For Windows users who have trouble with PyAudio:
+#   pip install pipwin
+#   pipwin install pyaudio
+# ==================================================
+
+# --- Core Voice ---
+# SpeechRecognition: microphone access + wake word detection (Google free STT)
+# SpeechRecognition>=3.10.0
+
+# PyAudio: low-level microphone I/O (required by SpeechRecognition)
+# PyAudio>=0.2.14
+
+# OpenAI Whisper: local speech-to-text model (accurate transcription)
+openai-whisper>=20231117
+
+# pyttsx3: offline text-to-speech (uses Windows SAPI5 voices)
+pyttsx3>=2.90
+
+# openwakeword: Local offline wake word detection
+openwakeword>=0.6.0
+
+# --- AI Brain ---
+# Google Gemini Python SDK (new unified SDK)
+google-genai>=1.0.0
+
+# Anthropic Python SDK (for Claude Sonnet, etc.)
+anthropic>=0.25.0
+
+# --- Configuration ---
+# python-dotenv: load .env file for API keys and settings
+python-dotenv>=1.0.0
+
+# --- Console ---
+# colorama: colored console output on Windows
+colorama>=0.4.6
+
+# --- Audio Processing (auto-installed with whisper) ---
+# numpy: numerical operations on audio data
+numpy>=1.24.0
+
+# torch: PyTorch (required by Whisper for model inference)
+# NOTE: torch is auto-installed by openai-whisper
+# For CPU-only (smaller download): pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+# --- Optional: Premium Voice ---
+# elevenlabs: premium AI voice synthesis (requires API key)
+# Uncomment the line below if you want ElevenLabs support:
+# elevenlabs>=0.2.0
+
+# === Phase 3: Automation ===
+# Desktop Automation
+PyAutoGUI>=0.9.54
+pygetwindow>=0.0.9
+
+# Scheduling
+apscheduler>=3.10.4
+
+# Browser Automation
+playwright>=1.41.0
+
+# Screen Awareness & System
+pytesseract>=0.3.10
+Pillow>=10.2.0
+psutil>=5.9.8
+opencv-python>=4.9.0
+
+# API & GUI Communication
+fastapi>=0.109.0
+uvicorn>=0.27.0
+websockets>=12.0
+
+# === Phase 5: Multi-Agent Architecture ===
+langgraph>=0.0.30
+langchain-core>=0.1.30
+pydantic>=2.6.0
+
+# === Phase 6: Vision & Screen Intelligence ===
+mss>=9.0.1
+
+# === Phase 7: Cybersecurity & Threat Intelligence ===
+tldextract>=5.1.0
+python-magic-bin>=0.4.14
+
+# === Stabilization & Hardening ===
+tenacity>=8.2.3
+psutil>=5.9.6

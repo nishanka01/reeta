@@ -1,0 +1,38 @@
+# REETA .gitignore
+
+# Environment variables (contains API keys!)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+
+# Logs
+logs/*.log
+logs/*.log.*
+
+# Whisper model cache
+*.pt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Data and database files
+data/*.db
+data/chromadb/
+data/screenshots/
+*.sqlite3

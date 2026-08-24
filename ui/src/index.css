@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@theme {
+  --color-inverse-on-surface: #2e3134;
+  --color-inverse-surface: #e1e2e7;
+  --color-surface-dim: #111417;
+  --color-surface-container-lowest: #0c0e12;
+  --color-on-tertiary-container: #725e00;
+  --color-on-tertiary: #3b2f00;
+  --color-on-surface: #e1e2e7;
+  --color-on-primary-fixed: #002022;
+  --color-surface-container-low: #191c1f;
+  --color-background: #111417;
+  --color-surface: #111417;
+  --color-on-error-container: #ffdad6;
+  --color-surface-container-highest: #323539;
+  --color-on-secondary: #432c00;
+  --color-on-secondary-fixed: #281900;
+  --color-secondary-fixed: #ffdeac;
+  --color-surface-container: #1d2023;
+  --color-tertiary-container: #fed83a;
+  --color-inverse-primary: #00696f;
+  --color-surface-variant: #323539;
+  --color-primary-container: #00f2ff;
+  --color-outline: #849495;
+  --color-on-background: #e1e2e7;
+  --color-on-tertiary-fixed: #221b00;
+  --color-surface-tint: #00dbe7;
+  --color-on-primary-container: #006a71;
+  --color-primary-fixed-dim: #00dbe7;
+  --color-on-primary: #00363a;
+  --color-surface-bright: #37393d;
+  --color-on-surface-variant: #b9cacb;
+  --color-secondary: #ffd799;
+  --color-on-primary-fixed-variant: #004f54;
+  --color-secondary-fixed-dim: #ffba38;
+  --color-primary-fixed: #74f5ff;
+  --color-error: #ffb4ab;
+  --color-tertiary-fixed-dim: #e8c423;
+  --color-primary: #e1fdff;
+  --color-tertiary: #fff6e4;
+  --color-on-secondary-fixed-variant: #604100;
+  --color-on-tertiary-fixed-variant: #554500;
+  --color-on-secondary-container: #6a4800;
+  --color-surface-container-high: #282a2e;
+  --color-secondary-container: #feb300;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-tertiary-fixed: #ffe173;
+  --color-outline-variant: #3a494b;
+
+  --font-headline-md: "Sora", sans-serif;
+  --font-display-lg: "Sora", sans-serif;
+  --font-display-lg-mobile: "Sora", sans-serif;
+  --font-data-mono: "JetBrains Mono", monospace;
+  --font-body-md: "Hanken Grotesk", sans-serif;
+  --font-label-caps: "JetBrains Mono", monospace;
+}
+
+:root {
+  --primary-glow: rgba(0,219,231,0.6);
+  --secondary-glow: rgba(255,186,56,0.4);
+}
+
+body {
+  background-color: #0c0e12;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  user-select: none;
+}
+
+/* Allow text selection in inputs and selectable areas */
+p, pre, span, input, textarea {
+  user-select: text;
+}
+
+/* Grid background */
+.hud-grid {
+  background-image:
+    linear-gradient(to right, rgba(0,219,231,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,219,231,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Global scan line */
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: rgba(0,219,231,0.12);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  animation: scanAnim 6s linear infinite;
+}
+@keyframes scanAnim {
+  0%   { transform: translateY(0); opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Glow effects */
+.glow-cyan  { box-shadow: 0 0 15px rgba(0,219,231,0.3); }
+.text-glow  { text-shadow: 0 0 8px rgba(0,219,231,0.6); }
+.glow-bloom { filter: drop-shadow(0 0 15px var(--primary-glow)); }
+
+/* Corner brackets */
+.corner-bracket { position: absolute; width: 12px; height: 12px; border-color: rgba(0,219,231,0.6); }
+.cb-tl { top:-1px; left:-1px; border-top:2px solid; border-left:2px solid; }
+.cb-tr { top:-1px; right:-1px; border-top:2px solid; border-right:2px solid; }
+.cb-bl { bottom:-1px; left:-1px; border-bottom:2px solid; border-left:2px solid; }
+.cb-br { bottom:-1px; right:-1px; border-bottom:2px solid; border-right:2px solid; }
+
+/* Hologram panel */
+.hologram-panel {
+  backdrop-filter: blur(8px);
+  background: rgba(17,20,23,0.4);
+  border: 1px solid rgba(0,219,231,0.1);
+  position: relative;
+}
+
+/* Animations */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); opacity: 0.5; }
+  50%  { transform: scale(1);    opacity: 0.8; }
+  100% { transform: scale(0.95); opacity: 0.5; }
+}
+.animate-pulse-ring { animation: pulse-ring 3s cubic-bezier(0.4,0,0.6,1) infinite; }
+
+@keyframes scan-vertical {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(900%); }
+}
+.scanner-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,219,231,0.5), transparent);
+  animation: scan-vertical 4s linear infinite;
+}
+
+@keyframes rotate { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+.neural-ring { animation: rotate 20s linear infinite; }
+
+@keyframes scale-y {
+  0%,100% { transform: scaleY(0.3); opacity:0.5; }
+  50%      { transform: scaleY(1.2); opacity:1; }
+}
+.waveform-bar { animation: scale-y 1s ease-in-out infinite; }
+
+@keyframes typing {
+  from { width: 0 }
+  to   { width: 100% }
+}
+@keyframes blink-caret {
+  from,to { border-color:transparent }
+  50%     { border-color:#00dbe7; }
+}
+.typewriter {
+  overflow: hidden;
+  border-right: .15em solid #00dbe7;
+  white-space: nowrap;
+  letter-spacing: .05em;
+  animation: typing 3.5s steps(40,end), blink-caret .75s step-end infinite;
+}
+
+@keyframes flicker-anim {
+  0%,10%,20%,100% { opacity:1; }
+  5%  { opacity:0.8; }
+  15% { opacity:0.9; }
+}
+.flicker { animation: flicker-anim 2s infinite; }
+
+.hexagon {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.hexagon:hover { transform: scale(1.05); background-color: rgba(0,219,231,0.15); box-shadow: 0 0 20px rgba(0,219,231,0.4); }
+
+.terminal-scroll::-webkit-scrollbar { width: 4px; }
+.terminal-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+.terminal-scroll::-webkit-scrollbar-thumb { background: rgba(0,219,231,0.2); }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,219,231,0.2); border-radius: 10px; }
+
+.hologram-border {
+  clip-path: polygon(
+    0 0, 10px 0, 10px 2px, 2px 2px, 2px 10px, 0 10px,
+    calc(100% - 10px) 0, 100% 0, 100% 10px, calc(100% - 2px) 10px, calc(100% - 2px) 2px, calc(100% - 10px) 2px,
+    0 calc(100% - 10px), 2px calc(100% - 10px), 2px calc(100% - 2px), 10px calc(100% - 2px), 10px 100%, 0 100%,
+    calc(100% - 10px) 100%, 100% 100%, 100% calc(100% - 10px), calc(100% - 2px) calc(100% - 10px), calc(100% - 2px) calc(100% - 2px), calc(100% - 10px) calc(100% - 2px)
+  );
+}
+
